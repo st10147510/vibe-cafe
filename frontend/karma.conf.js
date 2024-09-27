@@ -14,15 +14,15 @@ module.exports = function (config) {
     ],
     client: {
       jasmine: {
-        // you can add configuration options for Jasmine here
-        // the possible options are listed at https://jasmine.github.io/api/edge/Configuration.html
-        // for example, you can disable the random execution with `random: false`
+        // You can add configuration options for Jasmine here
+        // The possible options are listed at https://jasmine.github.io/api/edge/Configuration.html
+        // For example, you can disable random execution with `random: false`
         // or set a specific seed with `seed: 4321`
       },
-      clearContext: false // leave Jasmine Spec Runner output visible in browser
+      clearContext: false // Leave Jasmine Spec Runner output visible in the browser
     },
     jasmineHtmlReporter: {
-      suppressAll: true // removes the duplicated traces
+      suppressAll: true // Removes the duplicated traces
     },
     coverageReporter: {
       dir: require('path').join(__dirname, './coverage/app'),
@@ -37,7 +37,21 @@ module.exports = function (config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['Chrome'],
+    browsers: ['ChromeHeadlessNoSandbox'], // Use ChromeHeadlessNoSandbox in CI environments
+    customLaunchers: {
+      ChromeHeadlessNoSandbox: {
+        base: 'ChromeHeadless',
+        flags: [
+          '--no-sandbox',
+          '--disable-gpu',
+          '--disable-setuid-sandbox',
+          '--headless',
+          '--disable-dev-shm-usage',
+          '--remote-debugging-port=9222',
+          '--disable-software-rasterizer'
+        ]
+      }
+    },
     singleRun: false,
     restartOnFileChange: true
   });

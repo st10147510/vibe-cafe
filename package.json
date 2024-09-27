@@ -4,15 +4,16 @@
     "description": "Vibe Café Application - Unified platform for coffee lovers",
     "scripts": {
         "install-all": "npm run install-backend && npm run install-frontend",
-        "install-backend": "cd backend && npm install",
-        "install-frontend": "cd frontend && npm install",
+        "install-backend": "cd backend && npm ci",
+        "install-frontend": "cd frontend && npm ci",
         "start": "npm run start-backend & npm run start-frontend",
         "start-backend": "cd backend && npm start",
         "start-frontend": "cd frontend && ionic serve",
         "build-backend": "cd backend && npm run build",
         "build-frontend": "cd frontend && npm run build",
         "build-all": "npm run build-backend && npm run build-frontend",
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "test-backend": "cd backend && npm run test",
+        "test-frontend": "cd frontend && npm run test"
     },
     "author": "Tebogo Moloi",
     "license": "MIT",

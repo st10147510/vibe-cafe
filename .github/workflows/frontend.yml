@@ -1,0 +1,52 @@
+name: Frontend CI
+
+on:
+  push:
+    branches: [ "main", "feature/*" ]
+    paths:
+      - 'frontend/**'  # Watch changes only in the frontend folder
+      - '.github/workflows/frontend.yml'  # Watch changes to this workflow file itself
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - 'frontend/**'  # Watch changes only in the frontend folder
+      - '.github/workflows/frontend.yml'  # Watch changes to this workflow file itself
+      
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x, 22.x]
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+        
+    - name: Install Chrome
+      uses: browser-actions/setup-chrome@v1
+    
+    - name: Install Ionic CLI
+      run: npm install -g @ionic/cli
+
+    - name: Install Frontend Dependencies
+      run: npm run install-frontend
+
+    - name: Run Build
+      run: npm run build-frontend --if-present
+      
+    # - name: Run Tests
+    #   run: npm run test-frontend
+
+    - name: Upload Build Artifacts
+      if: success()
+      uses: actions/upload-artifact@v3
+      with:
+        name: com.vibecafe.app
+        path: ./frontend/www
