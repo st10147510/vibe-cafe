@@ -5,10 +5,12 @@ on:
     branches: [ "main", "feature/*" ]
     paths:
       - 'backend/**'  # Watch changes only in the backend folder
+      - '.github/workflows/backend.yml'  # Watch changes to this workflow file itself
   pull_request:
     branches: [ "main" ]
     paths:
       - 'backend/**'  # Watch changes only in the backend folder
+      - '.github/workflows/backend.yml'  # Watch changes to this workflow file itself
       
 jobs:
   build:

@@ -5,10 +5,12 @@ on:
     branches: [ "main", "feature/*" ]
     paths:
       - 'frontend/**'  # Watch changes only in the frontend folder
+      - '.github/workflows/frontend.yml'  # Watch changes to this workflow file itself
   pull_request:
     branches: [ "main" ]
     paths:
       - 'frontend/**'  # Watch changes only in the frontend folder
+      - '.github/workflows/frontend.yml'  # Watch changes to this workflow file itself
       
 jobs:
   build:
