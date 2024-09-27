@@ -35,6 +35,7 @@ vibe-cafe/
 │
 ├── backend/         # Backend Node.js application
 ├── frontend/        # Frontend Ionic application
+├── database/        # Database schema 
 └── package.json     # Root package.json for managing both backend and frontend
 ```
 
