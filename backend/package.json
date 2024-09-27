@@ -5,7 +5,7 @@
   "author": "Tebogo Moloi",
   "homepage": "https://api.vibecafe.com/",  
   "private": true,
-  "license": "UNLICENSED",
+  "license": "MIT",
   "scripts": {
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
