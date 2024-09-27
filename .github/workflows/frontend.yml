@@ -42,11 +42,11 @@ jobs:
       run: npm run build-frontend --if-present
       
     - name: Run Tests
-      run: npm run test-frontend -- --browsers ChromeHeadlessNoSandbox
+      run: npm run test-frontend
 
     - name: Upload Build Artifacts
       if: success()
       uses: actions/upload-artifact@v3
       with:
-        name: ionic-build
+        name: com.vibecafe.app
         path: ./frontend/www
