@@ -28,6 +28,19 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm run install-backend
-    - run: npm run build-backend --if-present
-    - run: npm run test-backend
+
+    - name: Install Dependencies
+      run: npm run install-backend
+
+    - name: Run Build
+      run: npm run build-backend --if-present
+    
+    - name: Run Tests
+      run: npm run test-backend
+
+    - name: Upload Build Artifacts
+      if: success()
+      uses: actions/upload-artifact@v3
+      with:
+        name: com.vibecafe.api
+        path: ./backend/dist
