@@ -26,6 +26,25 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm run install-frontend
-    - run: npm run build-frontend --if-present
-    - run: npm run test-frontend
+        
+    - name: Install Chrome
+      uses: browser-actions/setup-chrome@v1
+    
+    - name: Install Ionic CLI
+      run: npm install -g @ionic/cli
+
+    - name: Install Frontend Dependencies
+      run: npm run install-frontend
+
+    - name: Run Build
+      run: npm run build-frontend --if-present
+      
+    - name: Run Tests
+      run: npm run test-frontend
+
+    - name: Upload Build Artifacts
+      if: success()
+      uses: actions/upload-artifact@v3
+      with:
+        name: ionic-build
+        path: ./frontend/www
