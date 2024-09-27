@@ -4,11 +4,11 @@ on:
   push:
     branches: [ "main", "feature/*" ]
     paths:
-      - 'backend/**'  # Watch changes only in the backend folder
+      - 'frontend/**'  # Watch changes only in the frontend folder
   pull_request:
     branches: [ "main" ]
     paths:
-      - 'backend/**'  # Watch changes only in the backend folder
+      - 'frontend/**'  # Watch changes only in the frontend folder
       
 jobs:
   build:
@@ -26,6 +26,6 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm run install-backend
-    - run: npm run build-backend --if-present
-    - run: npm run test-backend
+    - run: npm run install-frontend
+    - run: npm run build-frontend --if-present
+    - run: npm run test-frontend
