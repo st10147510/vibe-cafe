@@ -1,0 +1,7 @@
+{
+  "name": "Vibe Cafe",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
