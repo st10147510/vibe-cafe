@@ -21,6 +21,7 @@ Before you begin, ensure you have the following installed on your machine:
 - **Ionic CLI** (for running the frontend)
 
 To install Ionic CLI, run:
+
 ```bash
 npm install -g @ionic/cli
 ```
@@ -29,7 +30,7 @@ npm install -g @ionic/cli
 
 The Vibe Café project is structured as follows:
 
-```
+```bash
 vibe-cafe/
 │
 ├── backend/         # Backend Node.js application
@@ -42,12 +43,14 @@ vibe-cafe/
 Follow these steps to install the project dependencies:
 
 1. **Clone the repository:**
+
    ```bash
    git clone https://github.com/st10147510/vibe-cafe.git
    cd vibe-cafe
    ```
 
 2. **Install dependencies for both backend and frontend:**
+
    ```bash
    npm run install-all
    ```
@@ -55,13 +58,16 @@ Follow these steps to install the project dependencies:
 > This command will automatically install all necessary packages for both the backend and frontend projects.
 
 3. **Set up the MySQL database:**
+
    - Create a MySQL database named `vibe_cafe`.
    - Import the SQL schema:
+
      ```bash
      mysql -u root -p vibe_cafe < database/schema.sql
      ```
 
 4. **Configure environment variables:**
+
    - Copy the `.env.example` file to `.env` in both the `backend` and `frontend` directories and update them with your database credentials and any other necessary configuration.
 
 ## Running the Project
@@ -80,11 +86,13 @@ npm start
 If you want to run the backend and frontend separately, you can use:
 
 - **Start Backend Only:**
+
   ```bash
   npm run start-backend
   ```
   
 - **Start Frontend Only:**
+
   ```bash
   npm run start-frontend
   ```
@@ -98,6 +106,7 @@ npm run build-all
 ```
 
 For individual builds:
+
 - **Backend:** `npm run build-backend`
 - **Frontend:** `npm run build-frontend`
 
