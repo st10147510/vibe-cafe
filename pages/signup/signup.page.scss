@@ -1,0 +1,38 @@
+.input{ 
+    font-size: 300;
+}
+
+ion-item{ 
+    --background: '#f1f1f1'; 
+    border-radius: 10px; 
+    margin-bottom: 16px;
+}
+
+.header { 
+    margin-top: 100px; 
+    margin-bottom: 80px; 
+    text-align: center; 
+    .subtitle{
+        color: grey;
+        font-size: 0.9rem;
+    }
+    .title{
+        font-size: 2rem;
+    }
+}
+
+.signinLink{
+    display:flex;
+    margin: auto;
+    flex-direction: row;
+    align-content: center;
+    position: absolute;
+
+    p{
+        font-size: 0.9rem;
+    }
+    a{
+        text-decoration: none;
+
+    }
+}

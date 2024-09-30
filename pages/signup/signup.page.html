@@ -1,0 +1,41 @@
+<ion-content [fullscreen]="true">
+  <div class="header">
+    <!--<ion-title class="title">Sign Up</ion-title>-->
+    <p class="subtitle">Create Account Here</p>
+  </div>
+
+  <form>
+    <div>
+      <ion-item>
+        <ion-icon name="person-outline"></ion-icon>
+        <ion-input label="Username" labelPlacement="floating" placeholder="Username" class="input"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="call-outline"></ion-icon>
+        <ion-input label="Mobile number" labelPlacement="floating" placeholder="Mobile number" class="input"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="mail-outline"></ion-icon>
+        <ion-input label="Email" labelPlacement="floating" placeholder="Email address" class="input"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="lock-closed-outline"></ion-icon>
+        <ion-input label="Password" labelPlacement="floating" placeholder="Password" class="input"></ion-input>
+      </ion-item>
+      <div>
+        <p>By signing up you agree to our Terms of use</p>
+      </div>
+      
+      <div>
+        <ion-fab vertical="bottom" horizontal="end" style="margin-bottom: 30px;">
+          <ion-fab-button [routerLink]="['/home']">
+          <ion-icon name="chevron-forward"></ion-icon>
+        </ion-fab-button>
+        </ion-fab>
+        <div class="signingLink">
+          <p >Already a member? <a [routerLink]="['/login']">Sign in now</a></p>
+        </div>
+      </div>
+    </div>
+  </form>
+</ion-content>
