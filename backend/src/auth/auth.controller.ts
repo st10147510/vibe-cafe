@@ -10,13 +10,12 @@ import { User } from '../user/entities/user.entity';
 @Controller('auth')
 export class AuthController {
   constructor(
-    private readonly authService: AuthService,
-    private readonly userService: UserService
+    private readonly authService: AuthService
   ) {}
 
   @Post('register')
   async register(@Body('email') email: string, @Body('password') password: string) {
-    return this.userService.register(email, password);
+    return this.authService.register(email, password);
   }
 
   @Post('login')

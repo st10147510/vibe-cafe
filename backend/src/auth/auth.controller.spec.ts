@@ -14,13 +14,19 @@ describe('AuthController', () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [AuthController],
       providers: [
-        AuthService,
+        {
+          provide: AuthService,
+          useValue: {
+            register: jest.fn(),
+            validateUser: jest.fn(),
+            login: jest.fn(),
+          },
+        },
         {
           provide: UserService,
           useValue: {
             findByEmail: jest.fn(),
             validateUser: jest.fn(),
-            register: jest.fn(),
           },
         },
         {
@@ -29,7 +35,12 @@ describe('AuthController', () => {
             sign: jest.fn().mockReturnValue('test_jwt_token'),
           },
         },
-        ConfigService,
+        {
+          provide: ConfigService,
+          useValue: {
+            get: jest.fn().mockReturnValue('test_jwt_secret'),
+          },
+        },
       ],
     }).compile();
 
@@ -41,6 +52,21 @@ describe('AuthController', () => {
     expect(controller).toBeDefined();
   });
 
+  describe('register', () => {
+    it('should register a new user', async () => {
+      const mockUser = { email: 'test@example.com', password: 'password' } as User;
+      
+      // Mock the register method to return the mockUser
+      jest.spyOn(authService, 'register').mockResolvedValue(mockUser);
+
+      const result = await controller.register(mockUser.email, mockUser.password);
+      
+      // Ensure that the result is the mockUser object
+      expect(result).toEqual(mockUser);
+      expect(authService.register).toHaveBeenCalledWith(mockUser.email, mockUser.password);
+    });
+  });
+
   describe('login', () => {
     it('should return an access token for a valid user', async () => {
       const mockUser = { email: 'test@example.com', password: 'password' };
@@ -49,16 +75,6 @@ describe('AuthController', () => {
 
       const result = await controller.login(mockUser.email, mockUser.password);
       expect(result).toEqual({ accessToken: 'test_jwt_token' });
-    });
-  });
-
-  describe('register', () => {
-    it('should register a new user', async () => {
-      const mockUser = { email: 'test@example.com', password: 'password' };
-      jest.spyOn(authService, 'register').mockResolvedValue(mockUser as User);
-
-      const result = await controller.register(mockUser.email, mockUser.password);
-      expect(result).toEqual(mockUser);
     });
   });
 });
