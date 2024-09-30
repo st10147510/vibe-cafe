@@ -59,7 +59,7 @@ describe('AuthController', () => {
       // Mock the register method to return the mockUser
       jest.spyOn(authService, 'register').mockResolvedValue(mockUser);
 
-      const result = await controller.register(mockUser.email, mockUser.password);
+      const result = await controller.register(mockUser);
       
       // Ensure that the result is the mockUser object
       expect(result).toEqual(mockUser);
@@ -73,7 +73,7 @@ describe('AuthController', () => {
       jest.spyOn(authService, 'validateUser').mockResolvedValue(mockUser as any);
       jest.spyOn(authService, 'login').mockResolvedValue({ accessToken: 'test_jwt_token' });
 
-      const result = await controller.login(mockUser.email, mockUser.password);
+      const result = await controller.login(mockUser);
       expect(result).toEqual({ accessToken: 'test_jwt_token' });
     });
   });

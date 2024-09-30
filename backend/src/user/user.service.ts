@@ -10,6 +10,7 @@ import * as bcrypt from 'bcryptjs';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
+import { UpdateAuthDto } from 'src/auth/dto/update-auth.dto';
 
 @Injectable()
 export class UserService {
@@ -65,6 +66,27 @@ export class UserService {
 
     // Save the user to the database
     return this.userRepository.save(newUser);
+  }
+
+  /**
+   * Update an existing user's details
+   * @param userId - The ID of the user to update
+   * @param updateAuthDto - Data Transfer Object containing update data
+   * @returns The updated user
+   */
+  async updateUser(userId: number, updateAuthDto: UpdateAuthDto): Promise<User> {
+    const user = await this.findById(userId);
+    if (!user) {
+      throw new NotFoundException(`User with ID ${userId} not found`);
+    }
+
+    if (updateAuthDto.password) {
+      const salt = await bcrypt.genSalt(10);
+      updateAuthDto.password = await bcrypt.hash(updateAuthDto.password, salt);
+    }
+
+    await this.userRepository.update(userId, updateAuthDto);
+    return this.findById(userId); // Return the updated user entity
   }
 
   /**

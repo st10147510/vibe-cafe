@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Put } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { CreateAuthDto } from './dto/create-auth.dto';
 import { UpdateAuthDto } from './dto/update-auth.dto';
@@ -14,14 +14,21 @@ export class AuthController {
   ) {}
 
   @Post('register')
-  async register(@Body('email') email: string, @Body('password') password: string) {
-    return this.authService.register(email, password);
+  async register(@Body() createAuthDto: CreateAuthDto) {
+    return this.authService.register(createAuthDto.email, createAuthDto.password);
   }
 
   @Post('login')
-  async login(@Body('email') email: string, @Body('password') password: string) {
-    const user = await this.authService.validateUser(email, password);
+  async login(@Body() createAuthDto: CreateAuthDto) {
+    const user = await this.authService.validateUser(createAuthDto.email, createAuthDto.password);
     return this.authService.login(user);
+  }
+
+  @UseGuards(AuthGuard('jwt'))
+  @Put('update')
+  async updateProfile(@Body() updateAuthDto: UpdateAuthDto) {
+    const user = await this.authService.validateUser(updateAuthDto.email, updateAuthDto.password);
+    return await this.authService.update(user.id, updateAuthDto);
   }
 
   @UseGuards(AuthGuard('jwt'))
