@@ -1,0 +1,60 @@
+.welcome-content {
+    display: flex;
+    flex-direction: column; /* Arrange children in a column */
+    justify-content: flex-start; /* Aligns content to the top */
+    align-items: center; /* Centers content horizontally */
+    height: 100%;
+    background-color: #f9f9f9;
+    position: relative;
+    padding-top: 20px; /* Adjust this padding if you need more space from the top */
+  }
+  
+  .welcome-container {
+    text-align: center;
+  }
+  
+  .welcome-logo {
+    margin-top: -150px;
+    height: auto; /* Ensure that height adjusts automatically */
+    width: 100%; /* Set a fixed width for the logo */
+    object-fit: contain; /* Adjust object-fit to maintain the aspect ratio */
+  }
+  
+  h1.welcome-title {
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: #333;
+    margin: -4em 0 0 0; /* Adjust this margin to move text closer to the logo */
+  }
+  
+  .welcome-subtitle {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    color: #666;
+  }
+  
+  .welcome-description {
+    font-size: 0.9rem;
+    color: #999;
+    margin-bottom: 30px;
+  }
+  
+  .circle-button {
+    position: absolute;
+    bottom: 30px;
+    left: 90%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 50px;
+    background-color: #333;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  .circle-button ion-icon {
+    font-size: 24px;
+  }
