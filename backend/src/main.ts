@@ -2,14 +2,14 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { ValidationPipe } from '@nestjs/common';
-import * as helmet from 'helmet';
+import helmet from 'helmet';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  // app.use(helmet());
-  app.useGlobalPipes(new ValidationPipe());
+  app.use(helmet());
   app.enableCors();
-
+  app.useGlobalPipes(new ValidationPipe());
+  
   // Swagger configuration
   const config = new DocumentBuilder()
     .setTitle('Vibe Café API')
@@ -23,6 +23,6 @@ async function bootstrap() {
     SwaggerModule.setup('docs', app, document);
   }
 
-  await app.listen(3001);
+  await app.listen(3000);
 }
 bootstrap();
