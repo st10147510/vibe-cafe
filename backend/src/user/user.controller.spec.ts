@@ -8,7 +8,14 @@ describe('UserController', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [UserController],
-      providers: [UserService],
+      providers: [
+        {
+          provide: UserService,
+          useValue: {
+            findById: jest.fn(), // Add other mock methods as needed
+          },
+        },
+      ],
     }).compile();
 
     controller = module.get<UserController>(UserController);
