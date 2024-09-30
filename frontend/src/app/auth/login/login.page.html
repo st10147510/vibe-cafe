@@ -1,0 +1,29 @@
+<ion-content>
+  <div class="auth-container">
+    <ion-back-button defaultHref="/" class="back-button"></ion-back-button>
+    <h2>Sign in</h2>
+    <p class="welcome-back">Welcome back</p>
+
+    <ion-item>
+      <ion-label position="floating">Email address</ion-label>
+      <ion-input [(ngModel)]="email" type="email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Password</ion-label>
+      <ion-input [(ngModel)]="password" type="password"></ion-input>
+    </ion-item>
+
+    <ion-button expand="block" color="primary" (click)="login()">Sign in</ion-button>
+
+    <div class="social-buttons">
+      <ion-button expand="block" color="light" class="google-signin">Sign in with Google</ion-button>
+      <ion-button expand="block" color="light" class="github-signin">Sign in with GitHub</ion-button>
+    </div>
+
+    <div class="login-footer">
+      <a routerLink="/forgot-password">Forgot Password?</a>
+      <p>New member? <a routerLink="/register">Sign up</a></p>
+    </div>
+  </div>
+</ion-content>

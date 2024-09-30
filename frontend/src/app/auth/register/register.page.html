@@ -1,0 +1,37 @@
+<ion-content>
+  <div class="auth-container">
+    <ion-back-button defaultHref="/login" class="back-button"></ion-back-button>
+    <h2>Sign up</h2>
+    <p>Create an account here</p>
+
+    <ion-item>
+      <ion-label position="floating">Name</ion-label>
+      <ion-input [(ngModel)]="name" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Mobile Number</ion-label>
+      <ion-input [(ngModel)]="tel" type="tel"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Email</ion-label>
+      <ion-input [(ngModel)]="email" type="email" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Password</ion-label>
+      <ion-input [(ngModel)]="password" type="password" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Confirm Password</ion-label>
+      <ion-input [(ngModel)]="confirmPassword" type="password" required></ion-input>
+    </ion-item>
+
+    <ion-button expand="block" color="primary" (click)="register()">Create Account</ion-button>
+
+    <p class="terms">By signing up you agree with our <a href="#">Terms of Use</a></p>
+    <p>Already a member? <a routerLink="/login">Sign in</a></p>
+  </div>
+</ion-content>
